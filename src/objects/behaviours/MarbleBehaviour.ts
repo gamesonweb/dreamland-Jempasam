@@ -23,7 +23,6 @@ export class MarbleBehaviour implements GameBehaviour{
                 case "q": this.force.addInPlaceFromFloats(1, 0, 0); break
                 case "d": this.force.addInPlaceFromFloats(-1, 0, 0); break
                 case "x":
-                    const 
             }
         })
 
@@ -47,5 +46,5 @@ export class MarbleBehaviour implements GameBehaviour{
             target.physicsBody.applyForce(force, target.getAbsolutePosition())
         }
     }
-    
+
 }
