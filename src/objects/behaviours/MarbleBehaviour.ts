@@ -71,5 +71,5 @@ export class MarbleBehaviour implements GameBehaviour{
             this.camera.rotation.set(Math.PI/3, 0, 0)
         }
     }
-    
+
 }
