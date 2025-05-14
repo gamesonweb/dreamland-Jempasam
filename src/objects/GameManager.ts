@@ -1,14 +1,14 @@
 import { Node, TransformNode } from "@babylonjs/core";
-import { GameObject, GameObjectBehaviour, GameWorld } from "./GameObject";
+import { GameBehaviour, GameObject, GameWorld } from "./GameObject";
 
 
 export class GameManager implements GameWorld{
 
-    private behaviours = new Map<string, GameObjectBehaviour>()
+    private behaviours = new Map<string, GameBehaviour>()
 
-    private objects = new Map<GameObjectBehaviour, GameObject[]>()
+    private objects = new Map<GameBehaviour, GameObject[]>()
 
-    private id_to_object = new Map<string, {behaviour: GameObjectBehaviour, object: GameObject}>()
+    private id_to_object = new Map<string, {behaviour: GameBehaviour, object: GameObject}>()
 
     constructor(
         private error: (msg: string)=>void = msg=>console.error(msg)
@@ -20,7 +20,7 @@ export class GameManager implements GameWorld{
         return Array.from(this.behaviours.keys())
     }
 
-    getObjects(type: string): { behaviour: GameObjectBehaviour; objects: GameObject[]; } {
+    getObjects(type: string): { behaviour: GameBehaviour; objects: GameObject[]; } {
         const behaviour = this.behaviours.get(type)
         if(!behaviour){ this.error(`Behaviour ${type} not found`); return { behaviour, objects: [] } }
         const objects = this.objects.get(behaviour)
@@ -29,13 +29,13 @@ export class GameManager implements GameWorld{
         
     }
 
-    getObject(id: string): { behaviour: GameObjectBehaviour; object: GameObject; } {
+    getObject(id: string): { behaviour: GameBehaviour; object: GameObject; } {
         const object = this.id_to_object.get(id)
         if(!object){ this.error(`Object ${id} not found`); return { behaviour: null, object: null } }
         return object
     }
 
-    addBehaviour(name:string, behaviour: GameObjectBehaviour){
+    addBehaviour(name:string, behaviour: GameBehaviour){
         this.behaviours.set(name, behaviour)
         this.objects.set(behaviour, [])
     }
@@ -75,6 +75,12 @@ export class GameManager implements GameWorld{
     tick(){
         for(const [behaviour, objects] of this.objects.entries()){
             behaviour.tick(this, objects)
+        }
+    }
+
+    visualTick(){
+        for(const [behaviour, objects] of this.objects.entries()){
+            if(behaviour.visualTick) behaviour.visualTick(this, objects)
         }
     }
 

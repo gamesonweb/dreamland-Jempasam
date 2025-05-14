@@ -20,4 +20,5 @@ export interface GameBehaviour{
     init(world: GameWorld, objects: GameObject[]): void
     dispose(world: GameWorld, objects: GameObject[]): void
     tick(world: GameWorld, objects: GameObject[]): void
+    visualTick?(world: GameWorld, objects: GameObject[]): void
 }
