@@ -66,9 +66,9 @@ async function mainMenu(){
 
 async function victoryMenu(options:{level: string, time: number}){
     const buttons = [
-        { label: "Restart", action: ()=>setScreen(mainMenu) },
+        { label: "Restart", action: ()=>setScreen(playLevel,options.level) },
         { label: "Change Level", action: ()=>setScreen(levelMenu) },
-        { label: "Main Menu", action: ()=>setScreen(playLevel,options.level) },
+        { label: "Main Menu", action: ()=>setScreen(mainMenu) },
     ]
 
     const menu = new Menu({

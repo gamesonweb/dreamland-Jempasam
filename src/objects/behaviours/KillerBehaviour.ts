@@ -21,9 +21,9 @@ export class KillerBehaviour implements GameBehaviour{
             const {objects,behaviour} = world.getObjects(this.players)
             if(!(behaviour instanceof MarbleBehaviour))return
             for(const player of objects){
-                const p_transform = player.target as TransformNode
+                const p_transform = player.target as Mesh
                 const ch_transform = killer.target as Mesh
-                if(ch_transform.getBoundingInfo().intersectsPoint(p_transform.absolutePosition)){
+                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),false)){
                     behaviour.kill(player)
                 }
                 
