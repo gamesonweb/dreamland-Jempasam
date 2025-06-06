@@ -22,25 +22,27 @@ export class MarbleBehaviour implements GameBehaviour{
 
         for(const object of objects){
             const node = object.target as TransformNode
-            new PhysicsAggregate(node, PhysicsShapeType.SPHERE, {mass:1, restitution:0}, node.getScene())
+            const physic = new PhysicsAggregate(node, PhysicsShapeType.SPHERE, {mass:1, restitution:0}, node.getScene())
+            physic.body.setGravityFactor(2)
+            physic.body.setAngularDamping(.3)
         }
 
         window.addEventListener("keydown", (e)=>{
             if(e.repeat) return
             switch (e.key) {
-                case "z": this.force.addInPlaceFromFloats(0, 0, -1); break
-                case "s": this.force.addInPlaceFromFloats(0, 0, 1); break
-                case "q": this.force.addInPlaceFromFloats(1, 0, 0); break
-                case "d": this.force.addInPlaceFromFloats(-1, 0, 0); break
+                case "s": this.force.addInPlaceFromFloats(0, 0, -1); break
+                case "z": this.force.addInPlaceFromFloats(0, 0, 1); break
+                case "d": this.force.addInPlaceFromFloats(1, 0, 0); break
+                case "q": this.force.addInPlaceFromFloats(-1, 0, 0); break
             }
         })
 
         window.addEventListener("keyup", (e)=>{
             switch (e.key) {
-                case "z": this.force.addInPlaceFromFloats(0, 0, 1); break
-                case "s": this.force.addInPlaceFromFloats(0, 0, -1); break
-                case "q": this.force.addInPlaceFromFloats(-1, 0, 0); break
-                case "d": this.force.addInPlaceFromFloats(1, 0, 0); break
+                case "s": this.force.addInPlaceFromFloats(0, 0, 1); break
+                case "z": this.force.addInPlaceFromFloats(0, 0, -1); break
+                case "d": this.force.addInPlaceFromFloats(-1, 0, 0); break
+                case "q": this.force.addInPlaceFromFloats(1, 0, 0); break
             }
         })
     }
@@ -49,7 +51,7 @@ export class MarbleBehaviour implements GameBehaviour{
     }
 
     tick(world: GameWorld, objects: GameObject[]): void {
-        const force = this.force.normalizeToNew().scaleInPlace(100)
+        const force = this.force.normalizeToNew().scaleInPlace(20)
         const center = Vector3.Zero()
         let height = 0
         height = 0

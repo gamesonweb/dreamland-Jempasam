@@ -36,9 +36,6 @@ manager.addBehaviour("marble", new MarbleBehaviour())
 
 const result = (await ImportMeshAsync(level_url,scene))
 const root = result.meshes.find(m=>m.name=="__root__")
-//for(const node of result.meshes) manager.loadObjects(node)
-//for(const node of result.transformNodes) manager.loadObjects(node)
-console.log(root)
 manager.loadObjects(root)
 
 // Lifecycle

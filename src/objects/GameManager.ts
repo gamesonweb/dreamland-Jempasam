@@ -46,6 +46,7 @@ export class GameManager implements GameWorld{
         const [name, type, parameters_string] = infos
         if(this.id_to_object[name]){ this.error(`Object ${name} already exists, duplicate name`); return }
 
+        console.log(parameters_string)
         const parameters = JSON.parse(parameters_string)
         const object = {name,parameters,target,data:{}} as GameObject
 
