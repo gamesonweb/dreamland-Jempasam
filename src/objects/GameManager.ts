@@ -26,7 +26,7 @@ export class GameManager implements GameWorld{
         const objects = this.objects.get(behaviour)
         if(!objects){ this.error(`Behaviour ${type} has no objects`); return { behaviour, objects: [] } }
         return { behaviour, objects }
-        
+
     }
 
     getObject(id: string): { behaviour: GameBehaviour; object: GameObject; } {

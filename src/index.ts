@@ -32,7 +32,7 @@ scene.createDefaultLight()
 
 const manager = new GameManager()
 manager.addBehaviour("solid", new SolidBehaviour())
-manager.addBehaviour("marble", new MarbleBehaviour())    
+manager.addBehaviour("marble", new MarbleBehaviour())
 
 const result = (await ImportMeshAsync(level_url,scene))
 const root = result.meshes.find(m=>m.name=="__root__")
