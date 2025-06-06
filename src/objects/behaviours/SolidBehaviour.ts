@@ -24,7 +24,7 @@ export class SolidBehaviour implements GameBehaviour{
     }
 
     dispose(world: GameWorld, objects: GameObject[]) {
-       
+
     }
 
     tick(world: GameWorld, objects: GameObject[]) {
