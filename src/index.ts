@@ -28,7 +28,7 @@ async function levelMenu(){
     for(const [path, url] of Object.entries(levels)){
         const name = path.split("/").pop()?.replace(".glb","") || "Unknown Level"
         buttons.push({
-            label: `Start ${name}`,
+            label: `Start ${beautifytext(name)}`,
             action: () => window.location.href = `?level=${name}`
         })
     }
@@ -72,7 +72,7 @@ async function victoryMenu(options:{level: string, time: number}){
     ]
 
     const menu = new Menu({
-        title: `You won the level ${options.level} in ${Math.floor(options.time/20)} seconds !`,
+        title: `You won the level ${beautifytext(options.level)} in ${Math.floor(options.time/20)} seconds !`,
         root: document.body,
         previous: null,
         buttons
@@ -149,4 +149,11 @@ async function playLevel(level: string){
     const level_name = new URLSearchParams(window.location.search).get("level")
     if(level_name) setScreen(playLevel, level_name)
     else setScreen(mainMenu)
+}
+
+
+function beautifytext(str:string){
+    let final = str.substring(0,1).toUpperCase() + str.substring(1)
+    final = final.replaceAll("_"," ")
+    return final
 }
