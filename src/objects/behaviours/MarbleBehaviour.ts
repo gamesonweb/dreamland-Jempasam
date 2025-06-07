@@ -68,7 +68,7 @@ export class MarbleBehaviour implements GameBehaviour{
                 target.physicsBody.applyForce(force, target.getAbsolutePosition())
                 center.addInPlace(target.getAbsolutePosition())
                 height += Math.max(target.scaling.x, target.scaling.y, target.scaling.z)
-                if(target.absolutePosition.y<-10)this.kill(object)
+                if(target.absolutePosition.y<-150)this.kill(object)
             }
         }
         center.scaleInPlace(1/objects.length)
