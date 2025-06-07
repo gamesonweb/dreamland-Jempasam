@@ -20,7 +20,7 @@ export class CheckpointBehaviour implements GameBehaviour{
             for(const player of world.getObjects(this.players).objects){
                 const p_transform = player.target as Mesh
                 const ch_transform = checkpoint.target as Mesh
-                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),false)){
+                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),true)){
                     player.data.spawn_point = ch_transform.absolutePosition.clone()
                 }
             }

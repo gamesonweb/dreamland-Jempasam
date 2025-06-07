@@ -33,7 +33,7 @@ export class ExitBehaviour implements GameBehaviour{
             for(const player of objects){
                 const p_transform = player.target as Mesh
                 const ch_transform = killer.target as Mesh
-                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),false)){
+                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),true)){
                     this.time++
                 }
                 

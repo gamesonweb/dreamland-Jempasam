@@ -1,5 +1,5 @@
 import { GameBehaviour, GameObject, GameWorld } from "../GameObject";
-import { AbstractMesh, Mesh, PhysicsAggregate, PhysicsMotionType, PhysicsPrestepType, PhysicsShapeType } from "@babylonjs/core";
+import { AbstractMesh, Animation, Mesh, PhysicsAggregate, PhysicsMotionType, PhysicsPrestepType, PhysicsShapeType } from "@babylonjs/core";
 
 export class SolidBehaviour implements GameBehaviour{
 

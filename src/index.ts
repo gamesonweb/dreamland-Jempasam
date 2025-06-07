@@ -29,7 +29,7 @@ async function levelMenu(){
         const name = path.split("/").pop()?.replace(".glb","") || "Unknown Level"
         buttons.push({
             label: `Start ${beautifytext(name)}`,
-            action: () => window.location.href = `?level=${name}`
+            action: () => setScreen(playLevel, name),
         })
     }
 
@@ -117,6 +117,7 @@ async function playLevel(level: string){
 
     const result = (await ImportMeshAsync(level_url,scene))
     const root = result.meshes.find(m=>m.name=="__root__")
+    result.animationGroups.forEach(it=>it.start(true))
     manager.loadObjects(root)
 
     // Lifecycle

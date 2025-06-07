@@ -1,5 +1,5 @@
 import { GameBehaviour, GameObject, GameWorld } from "../GameObject";
-import { AbstractMesh, Mesh, PhysicsAggregate, PhysicsMotionType, PhysicsPrestepType, PhysicsShapeType, TransformNode, VertexBuffer } from "@babylonjs/core";
+import { AbstractMesh, BoundingSphere, Mesh, PhysicsAggregate, PhysicsMotionType, PhysicsPrestepType, PhysicsShapeType, TransformNode, VertexBuffer } from "@babylonjs/core";
 import { MarbleBehaviour } from "./MarbleBehaviour";
 
 export class KillerBehaviour implements GameBehaviour{
@@ -23,7 +23,7 @@ export class KillerBehaviour implements GameBehaviour{
             for(const player of objects){
                 const p_transform = player.target as Mesh
                 const ch_transform = killer.target as Mesh
-                if(ch_transform.getBoundingInfo().intersects(p_transform.getBoundingInfo(),false)){
+                if(ch_transform.getBoundingInfo().intersectsPoint(p_transform.absolutePosition)){
                     behaviour.kill(player)
                 }
                 
